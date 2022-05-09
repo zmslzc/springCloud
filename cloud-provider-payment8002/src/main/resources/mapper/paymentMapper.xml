@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zecan.springcloud.dao.PaymentDao">
+    <resultMap id="paymentMap" type="com.zecan.springcloud.entity.Payment">
+        <id column="id" property="id"/>
+        <result column="serial" property="serial"/>
+    </resultMap>
+
+    <insert id="createPayment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO payment(serial)
+        VALUES (#{payment.serial})
+    </insert>
+
+    <select id="findPaymentById" resultMap="paymentMap">
+        SELECT *
+        FROM payment
+        WHERE id = #{id}
+    </select>
+</mapper>

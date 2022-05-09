@@ -1,0 +1,26 @@
+server:
+  port: 80
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+#需要加上，否则会报错
+ribbon: # 因为在业务中, 有一个延迟三秒钟的代码, 如果不添加会报错
+  ReadTimeout: 4000
+  ConnectTimeout: 4000
+
+feign:
+  hystrix:
+    enabled: true  #开启服务降级
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 5000
+
+
